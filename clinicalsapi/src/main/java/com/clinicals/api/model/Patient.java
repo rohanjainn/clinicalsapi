@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,10 +14,11 @@ import javax.persistence.OneToMany;
 public class Patient {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private String lastname;
-	private String firstname;
+	private String last_name;
+	private String first_name;
 	private int age;
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="patient")
@@ -29,16 +32,16 @@ public class Patient {
 		this.id = id;
 	}
 	public String getLastname() {
-		return lastname;
+		return last_name;
 	}
 	public void setLastname(String lastname) {
-		this.lastname = lastname;
+		this.last_name = lastname;
 	}
 	public String getFirstname() {
-		return firstname;
+		return first_name;
 	}
 	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+		this.first_name = firstname;
 	}
 	public int getAge() {
 		return age;

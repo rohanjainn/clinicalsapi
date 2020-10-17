@@ -10,15 +10,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.clinicals.api.model.Patient;
 import com.clinicals.api.repos.PatientRepo;
 
-@Path("/api")
 @Consumes("application/json")
 @Produces("application/json")
+@Path("/api")
 public class PatientService {
 
 	@Autowired
@@ -34,8 +35,9 @@ public class PatientService {
 	
 	@Path("/patients/{id}")
 	@GET
-	Patient getPatient(@PathParam("id")int id)
+	public Patient getPatient(@PathParam("id") int id)
 	{
+		
 		return repo.findById(id).get();
 	}
 	
@@ -46,11 +48,15 @@ public class PatientService {
 		return repo.save(patient);
 	}
 	
-	@Path("/patient")
+	@Path("/patient/{id}")
 	@DELETE
-	public void deletePatient(Patient patient)
+	public Response deletePatient(@PathParam("id") int id)
 	{
-		repo.delete(patient);
+		Patient entity = repo.findById(id).get();
+		System.out.println(entity.toString());
+		repo.delete(entity);
+		
+		return Response.ok().build();
 	}
 	
 	@Path("/patient")
