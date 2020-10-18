@@ -59,10 +59,4 @@ public class PatientService {
 		return Response.ok().build();
 	}
 	
-	@Path("/patient")
-	@PUT
-	public void updatePatient(Patient patient)
-	{
-		
-	}
 }
