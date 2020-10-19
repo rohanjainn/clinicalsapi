@@ -68,4 +68,6 @@ public class PatientService {
 	}
 	
 	//TODO Implement ClinicalApi
+	
+	int i=1;
 }
